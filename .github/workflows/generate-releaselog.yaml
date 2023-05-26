@@ -6,7 +6,9 @@ on:
 jobs:
   get-commits-diff:
     runs-on: ubuntu-latest
+
     steps:
+    - uses: actions/checkout@v3
     - name: Create Release Notes
       id: release-notes
       uses: actions/github-script@v6
