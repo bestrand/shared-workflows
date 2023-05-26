@@ -1,0 +1,23 @@
+name: Generate Release Notes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-commits-diff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create Release Notes
+      id: release-notes
+      uses: actions/github-script@v6
+      env:
+        REPO: "bestrand/test-app"
+        BASE: "08ae476"
+        HEAD: "f43e76d"
+      with:
+        github-token: ${{ secrets.COMMIT_READ }}
+        script: |
+          const releaseNotes = require('./.github/js/releaseNotes.js');
+          await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github)
+    - name: Get result
+      run: echo "${{steps.release-notes.outputs.result}}"
