@@ -15,10 +15,6 @@ on:
         description: Base commit sha
         required: true
         type: string
-    secrets:
-      app-commit-read-token:
-        description: Token for read access to commits in application repo
-        required: true
 
 jobs:
   get-commits-diff:
