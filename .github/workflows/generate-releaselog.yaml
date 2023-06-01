@@ -14,8 +14,8 @@ jobs:
       uses: actions/github-script@v6
       env:
         REPO: "bestrand/test-app"
-        BASE: "08ae476"
-        HEAD: "f43e76d"
+        BASE: "f43e76d"
+        HEAD: "08ae476"
       with:
         github-token: ${{ secrets.COMMIT_READ }}
         script: |
