@@ -20,6 +20,6 @@ jobs:
         github-token: ${{ secrets.COMMIT_READ }}
         script: |
           const releaseNotes = require('./.github/js/releaseNotes.js');
-          console.log(await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github))
+          return await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github)
     - name: Get result
-      run: echo "${{steps.release-notes.outputs.result}}"
+      run: echo "${{ steps.release-notes.outputs.result }}"
