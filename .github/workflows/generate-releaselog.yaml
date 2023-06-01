@@ -15,6 +15,10 @@ on:
         description: Base commit sha
         required: true
         type: string
+    secrets:
+      app-commit-read-token:
+        description: Token for read access to commits in application repo
+        required: true
 
 jobs:
   get-commits-diff:
@@ -31,7 +35,7 @@ jobs:
         BASE: ${{ inputs.base-sha }}
         HEAD: ${{ inputs.head-sha }}
       with:
-        github-token: ${{ secrets.COMMIT_READ }}
+        github-token: ${{ secrets.app-commit-read-token }}
         script: |
           const releaseNotes = require('./.github/js/releaseNotes.js');
           return await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github)
