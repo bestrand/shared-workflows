@@ -16,7 +16,7 @@ on:
         required: true
         type: string
     secrets:
-      app-commit-read-token:
+      token:
         description: Token for read access to commits in application repo
         required: true
 
@@ -35,7 +35,7 @@ jobs:
         BASE: ${{ inputs.base-sha }}
         HEAD: ${{ inputs.head-sha }}
       with:
-        github-token: ${{ secrets.app-commit-read-token }}
+        github-token: ${{ secrets.token }}
         script: |
           const releaseNotes = require('./.github/js/releaseNotes.js');
           return await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github)
