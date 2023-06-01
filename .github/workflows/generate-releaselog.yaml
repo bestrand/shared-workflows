@@ -22,4 +22,4 @@ jobs:
           const releaseNotes = require('./.github/js/releaseNotes.js');
           return await releaseNotes("${{ env.BASE }}", "${{ env.HEAD }}", "${{ env.REPO }}", github)
     - name: Get result
-      run: echo ${{ steps.release-notes.outputs.result }}
+      run: echo ${{ toJSON(steps.release-notes.outputs.result) }}
